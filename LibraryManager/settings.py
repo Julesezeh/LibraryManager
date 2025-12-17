@@ -170,8 +170,9 @@ SWAGGER_SETTINGS = {
             "name": "Authorization",
             "in": "header",
             "description": (
-                "JWT Authorization header using the Bearer scheme.\n\n"
-                "Example: **Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...**"
+                "Enter JWT token **with Bearer prefix**.\n\n"
+                "Example:\n"
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
             ),
         }
     },
