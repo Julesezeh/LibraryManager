@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "django_filters",
+    "drf_spectacular",
     "drf_yasg",
     "corsheaders",
     "book",
@@ -161,33 +162,48 @@ REST_FRAMEWORK = {
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
-SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": {
-        "Bearer": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header",
-            "description": (
-                "Enter JWT token **with Bearer prefix**.\n\n"
-                "Example:\n"
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-            ),
-        }
+# SWAGGER_SETTINGS = {
+#     "SECURITY_DEFINITIONS": {
+#         "Bearer": {
+#             "type": "apiKey",
+#             "name": "Authorization",
+#             "in": "header",
+#             "description": (
+#                 "Enter JWT token **with Bearer prefix**.\n\n"
+#                 "Example:\n"
+#                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+#             ),
+#         }
+#     },
+#     "USE_SESSION_AUTH": False,
+# }
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "LibraryManager API",
+    "DESCRIPTION": "Library Manager Project",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": True,
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+        "displayRequestDuration": True,
     },
-    "USE_SESSION_AUTH": False,
 }
+
 
 # JWT Settings
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKENS": False,
+    "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
-    "ALGORITHM": "HS256",
-    "SIGNING_KEY": SECRET_KEY,
     "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
 }
 
 # CORS Settings
