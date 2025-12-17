@@ -3,8 +3,8 @@ from rest_framework.test import APIClient
 from rest_framework import status
 from django.utils import timezone
 from datetime import timedelta
-from books.models import Book, Loan
-from users.models import User
+from book.models import Book, Loan
+from user.models import User
 
 
 @pytest.fixture
